@@ -68,20 +68,29 @@ yarn install
 ```
 
 ### 3. 環境変数の設定
-```bash
-cp .env.example .env.local
-```
 
-`.env.local` に以下の値を設定：
+**セキュリティのため、実際のAPIキーはSlackやセキュアな方法で共有します。**
+
+| 環境変数 | 説明 | 取得先 |
+|---------|------|--------|
+| `NEXT_PUBLIC_SUPABASE_URL` | SupabaseプロジェクトURL | [Supabase Dashboard](https://supabase.com/dashboard) > Settings > API |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase公開鍵 | [Supabase Dashboard](https://supabase.com/dashboard) > Settings > API |
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabaseサービスロール鍵 ⚠️ | [Supabase Dashboard](https://supabase.com/dashboard) > Settings > API |
+| `RESEND_API_KEY` | Resend APIキー ⚠️ | [Resend Dashboard](https://resend.com/api-keys) |
+| `RESEND_FROM_EMAIL` | 送信元メールアドレス | 設定したドメインのメールアドレス |
+| `NEXT_PUBLIC_SITE_URL` | サイトURL | 開発時: `http://localhost:3000` |
+
+> ⚠️ **セキュリティ注意**: `SERVICE_ROLE_KEY` と `API_KEY` は機密情報です。Gitにコミットせず、チーム内でセキュアに共有してください。
+
+**設定例（`.env.local`）：**
 ```env
-# Supabase
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
-
-# Resend
-RESEND_API_KEY=your_resend_api_key
+# 開発環境用設定例
+NEXT_PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+SUPABASE_SERVICE_ROLE_KEY=[チーム内で共有される実際のキー]
+RESEND_API_KEY=[チーム内で共有される実際のキー]
 RESEND_FROM_EMAIL=noreply@your-domain.com
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
 # サイト設定
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
